@@ -18,6 +18,8 @@ http.createServer(function (req, res) {
                 send.fs(id, function (result) {
                     res.end(result);
                 });
+            } else{
+                res.end('fs bad');
             }
         } else {
             res.end('hello world!');
