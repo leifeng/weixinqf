@@ -1,12 +1,12 @@
 var mongo = require('mongoskin');
 var db = mongo.db('localhost:27017/weixin');
 exports.insert=function(tokenid){
-    db.collection('token').findOne({id:tokenid},function(err,post){
+    db.collection('token').count({'id':tokenid},function(err,num){
         if(err) return;
-        if(post!=null){
+        if(num==0){
             db.collection('token').insert({id:tokenid},function(err,result){
                 if(err) return;
-                db.close();
+
             })
         }
     }) ;
