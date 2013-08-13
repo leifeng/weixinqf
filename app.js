@@ -25,5 +25,5 @@ http.createServer(function (req, res) {
     } else {
         res.end('hello world!');
     }
-}).listen(3001);
-console.log('runing at 3001');
+}).listen(3002);
+console.log('runing at 3002');
