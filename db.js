@@ -18,12 +18,16 @@ exports.find=function(callback){
     var x=1;
     db.collection('token').find().toArray(function(err,result){
         if(err) return;
-        if(x==result.length){
-            callback(all);
-        }else{
-            x++;
-            all+=result.id+',';
-            console.log('find: '+result);
+        for(var i in result){
+            console.log('find: '+result[i].id);
+            callback('1309417340');
         }
+//        if(x==result.length){
+//            callback(all);
+//        }else{
+//            x++;
+//            all+=result.id+',';
+//            console.log('find: '+result.id);
+//        }
     });
 }
