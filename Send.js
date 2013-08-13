@@ -8,8 +8,8 @@ exports.fs=function(id,callback){
         db.find(function (result) {
             var arr = result.split(',');
             for (var i in arr) {
-                sendmsg(cookie,token,i,id)
-                     console.log('---'+i);
+                sendmsg(cookie,token,arr[i],id)
+                     //console.log('---'+i);
             }
             callback('send ok');
         })
@@ -29,6 +29,7 @@ var sendmsg=function(cookie,token,user,id){
         token: token,
         ajax: '1'
     });
+    console.log(post);
     var headers = {
         'Accept': '*/*',
         'Accept-Encoding': 'gzip,deflate,sdch',
@@ -50,7 +51,7 @@ var sendmsg=function(cookie,token,user,id){
         headers: headers
     }
     var req = http.request(opt, function (res) {
-       // console.log('STATUS: ' + res.statusCode);
+        console.log('STATUS: ' + res.statusCode);
      //   console.log('HEADERS: ' + JSON.stringify(res.headers));
      //   res.setEncoding('utf8');
      //   res.on('data', function (chunk) {
