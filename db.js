@@ -23,6 +23,7 @@ exports.find=function(callback){
         }else{
             x++;
             all+=result.id+',';
+            console.log('find'+result.id);
         }
     });
 }
