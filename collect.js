@@ -22,6 +22,7 @@ exports.cj = function (callback) {
             ;
             console.log('num:   ' + num)
             var page = num / 100 + num % 100;
+            console.log('page:   ' + page)
             for (var i = 0; i <= page; i++) {
                 var opt = {
                     hostname: 'mp.weixin.qq.com',
@@ -39,7 +40,7 @@ exports.cj = function (callback) {
                         db.insert(json[i].fakeId);
                     }
                 });
-                if(i==page-1){
+                if(i==page){
                     callback('cj ok');
                 }
             }
