@@ -36,8 +36,8 @@ exports.cj = function (callback) {
                     html = html.substring(0, html.indexOf('</script>')).replace('<script id="json-friendList" type="json/text">', '')
                     var json = JSON.parse(html);
                     for (var i in json) {
-                        console.log(json[i].fakeId);
-                        db.insert(json[i].fakeId);
+                       // console.log(json[i].fakeId);
+                     //   db.insert(json[i].fakeId);
                     }
                 });
                 if(i==page){
