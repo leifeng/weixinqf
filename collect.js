@@ -35,11 +35,11 @@ exports.cj=function(callback){
                     var json=  JSON.parse(html)  ;
                     for(var i in json){
                         console.log(json[i].fakeId);
-                        //db.insert(json[i].fakeId);
+                        db.insert(json[i].fakeId);
                     }
                 }) ;
             }
-            callback('ok');
+
         });
 
     });
