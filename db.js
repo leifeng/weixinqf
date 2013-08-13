@@ -17,15 +17,15 @@ exports.find = function (callback) {
     var all = '';
     db.collection('token').find().toArray(function (err, result) {
         if (err) return;
-        console.log('length  : ' + result.length);
+       // console.log('length  : ' + result.length);
         for (var i in result) {
             console.log('find: ' + result[i].id);
-            console.log('i  : ' + i);
+           // console.log('i  : ' + i);
 
             all += result[i].id + ',';
-            if (i == result.length) {
-               // callback(all);
-                console.log("+++++++++++++++++++");
+            if (i == result.length-1) {
+                //callback(all);
+                console.log(all);
             }
         }
 
