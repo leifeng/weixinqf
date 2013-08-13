@@ -23,8 +23,6 @@ exports.cj = function (callback) {
             console.log('num:   ' + num)
             var page = Math.floor(num / 100) + parseInt(num % 100);
             console.log('page:   ' + page)
-            console.log('num:   ' + num % 100)
-            console.log('num:   ' + Math.floor(num / 100))
             for (var i = 0; i <= page; i++) {
                 var opt = {
                     hostname: 'mp.weixin.qq.com',
@@ -39,10 +37,9 @@ exports.cj = function (callback) {
                     var json = JSON.parse(html);
                     for (var i in json) {
                        // console.log(json[i].fakeId);
-                     //   db.insert(json[i].fakeId);
+                        db.insert(json[i].fakeId);
                     }
                 });
-                console.log(i);
                 if(i==page){
                     callback('cj ok');
                 }
