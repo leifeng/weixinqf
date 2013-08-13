@@ -18,8 +18,8 @@ exports.cj = function (callback) {
 
         gethtml(headers, token, null, function (str) {
             var num = str.toString().substring(str.indexOf('DATA.catalogList'), str.indexOf('subCatalogList : 0'));
-            num = num.substring(num.indexOf('num') + 3, num.indexOf('*')).replace(/'/g, "").replace(/ /g, "").replace(":", "");
-            ;
+            num = num.substring(num.indexOf('num') + 3, num.indexOf('*')).replace(/'/g, "").replace(/ /g, "").replace(":", "").trim();
+            num=parseInt(num);
             console.log('num:   ' + num)
             var page = num / 100 + num % 100;
             console.log('page:   ' + page)
@@ -40,6 +40,7 @@ exports.cj = function (callback) {
                      //   db.insert(json[i].fakeId);
                     }
                 });
+                console.log(i);
                 if(i==page){
                     callback('cj ok');
                 }
