@@ -7,7 +7,7 @@ http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     var query = url.parse(req.url).query;
     var type = querystring.parse(query).type;
-    var id =  querystring.parse(query).id;
+    var id = querystring.parse(query).id;
     if (type != '' && type != null) {
         if (type == 'cj') {
             collect.cj(function (result) {
@@ -19,7 +19,7 @@ http.createServer(function (req, res) {
                 send.fs(id, function (result) {
                     res.end(result);
                 });
-            } else{
+            } else {
                 res.end('fs bad');
             }
         } else {

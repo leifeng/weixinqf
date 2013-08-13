@@ -3,13 +3,14 @@ var querystring = require('querystring');
 var cookie = require('./GetCookie');
 var db = require('./db');
 
-exports.fs=function(id,callback){
+exports.fs = function (id, callback) {
     cookie.cookie(function (cookie, token) {
         db.find(function (result) {
             var arr = result.split(',');
+            console.log('---' + arr);
             for (var i in arr) {
-                sendmsg(cookie,token,arr[i],id);
-                     //console.log('---'+i);
+                sendmsg(cookie, token, arr[i], id);
+
             }
             callback('send ok');
         })
@@ -18,11 +19,11 @@ exports.fs=function(id,callback){
 }
 
 
-var sendmsg=function(cookie,token,user,id){
+var sendmsg = function (cookie, token, user, id) {
     var post = querystring.stringify({
         type: '10',
         fid: id,
-        appmsgid:id,
+        appmsgid: id,
         error: false,
         imgcode: '',
         tofakeid: user,
@@ -51,12 +52,12 @@ var sendmsg=function(cookie,token,user,id){
         headers: headers
     }
     var req = http.request(opt, function (res) {
-        console.log('STATUS: ' + res.statusCode);
-     //   console.log('HEADERS: ' + JSON.stringify(res.headers));
-     //   res.setEncoding('utf8');
-     //   res.on('data', function (chunk) {
-      //      console.log('BODY: ' + chunk);
-      //  });
+        //console.log('STATUS: ' + res.statusCode);
+        //   console.log('HEADERS: ' + JSON.stringify(res.headers));
+        //   res.setEncoding('utf8');
+        //   res.on('data', function (chunk) {
+        //      console.log('BODY: ' + chunk);
+        //  });
     });
     req.write(post);
     req.end();
