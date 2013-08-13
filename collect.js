@@ -39,8 +39,11 @@ exports.cj = function (callback) {
                         db.insert(json[i].fakeId);
                     }
                 });
+                if(i==page-1){
+                    callback('cj ok');
+                }
             }
-            callback('cj ok');
+
 
         });
 

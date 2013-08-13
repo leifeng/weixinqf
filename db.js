@@ -6,7 +6,6 @@ exports.insert = function (tokenid) {
         if (num == 0) {
             db.collection('token').insert({id: tokenid}, function (err, result) {
                 if (err) return;
-                console.log('+');
             });
         } else {
             console.log('重复');
