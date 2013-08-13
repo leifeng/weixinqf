@@ -21,10 +21,10 @@ exports.cj = function (callback) {
             num = num.substring(num.indexOf('num') + 3, num.indexOf('*')).replace(/'/g, "").replace(/ /g, "").replace(":", "").trim();
             num=parseInt(num);
             console.log('num:   ' + num)
-            var page = parseInt(num / 100) + parseInt(num % 100);
+            var page = Math.floor(num / 100) + parseInt(num % 100);
             console.log('page:   ' + page)
             console.log('num:   ' + num % 100)
-            console.log('num:   ' + num / 100)
+            console.log('num:   ' + Math.floor(num / 100))
             for (var i = 0; i <= page; i++) {
                 var opt = {
                     hostname: 'mp.weixin.qq.com',
