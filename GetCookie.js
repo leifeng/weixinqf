@@ -1,9 +1,10 @@
 var querystring = require('querystring');
 var http = require('http');
+var config=require('./config');
 exports.cookie = function (callback) {
     var post = querystring.stringify({
-        username: '',
-        pwd: '',
+        username: config.user,
+        pwd: config.pwd,
         imgcode: '',
         f: 'json'
     });
