@@ -20,8 +20,9 @@ exports.find=function(callback){
         if(err) return;
         for(var i in result){
             console.log('find: '+result[i].id);
-            callback('1309417340');
+                  all+=result[i].id+',';
         }
+        callback(all);
 //        if(x==result.length){
 //            callback(all);
 //        }else{
