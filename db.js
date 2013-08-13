@@ -24,8 +24,8 @@ exports.find = function (callback) {
 
             all += result[i].id + ',';
             if (i == result.length-1) {
-                //callback(all);
-                console.log(all);
+                callback(all);
+                //console.log(all);
             }
         }
 
