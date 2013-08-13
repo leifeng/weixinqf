@@ -39,6 +39,7 @@ exports.cj=function(callback){
                     }
                 }) ;
             }
+            callback('cj ok');
 
         });
 

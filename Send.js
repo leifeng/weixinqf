@@ -7,9 +7,9 @@ exports.fs=function(id,callback){
     cookie.cookie(function (cookie, token) {
         db.find(function (result) {
             var arr = result.split(',');
-            for (i in arr) {
+            for (var i in arr) {
                 sendmsg(cookie,token,i,id)
-                     console.log(i);
+                     console.log('---'+i);
             }
             callback('send ok');
         })
