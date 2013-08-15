@@ -8,7 +8,9 @@ exports.fs = function (id, callback) {
     cookie.cookie(function (cookie, token) {
         db.find(function (result) {
            var arr = result.split(',');
+            console.log('vvvvvv'+arr.length);
             a(arr,cookie,token,0,id);
+            console.log('aaaaaa'+arr.length);
         })
 
     });
@@ -65,9 +67,9 @@ var a = function (arr,cookie, token, i, id) {
     setTimeout(function () {
        // sendmsg(cookie, token, arr[i], id);
         console.log(arr[i]);
-        if (i == arr.length) {
-            callback('send ok');
-        }
+       // if (i == arr.length) {
+       //     callback('send ok');
+      //  }
     }, 1000)
 
     a(cookie,token,++i, id);
