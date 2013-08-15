@@ -25,11 +25,11 @@ exports.fs = function (_id, callback) {
 
 var t = -1;
 var b = function () {
-    if (t < -1) {
+    if (t > -1) {
         clearTimeout(t);
     }
     t = setTimeout(function () {
-        if (i >= 6) {
+        if (i == 6) {
             clearTimeout(t);
             foo("ok");
         } else {
