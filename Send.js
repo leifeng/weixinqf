@@ -3,28 +3,31 @@ var querystring = require('querystring');
 var cookie = require('./GetCookie');
 var db = require('./db');
 
+var id, cookie, token, arr, length;
+var i = 0;
+exports.fs = function (_id, callback) {
 
-exports.fs = function (id, callback) {
-    cookie.cookie(function (cookie, token) {
+    cookie.cookie(function (_cookie, _token) {
+        id = _id;
+        cookie = _cookie;
+        token = _token;
         db.find(function (result) {
-            var arr = result.split(',');
-            console.log('vvvvvv' + arr.length);
-            a(arr, cookie, token, 0, id);
-            console.log('aaaaaa' + arr.length);
-
+            arr = result.split(',');
+            a(callback);
         })
 
     });
 }
 
-var sendmsg = function (cookie, token, user, id) {
+
+var sendmsg = function (userid) {
     var post = querystring.stringify({
         type: '10',
         fid: id,
         appmsgid: id,
         error: false,
         imgcode: '',
-        tofakeid: user,
+        tofakeid: userid,
         token: token,
         ajax: '1'
     });
@@ -49,34 +52,27 @@ var sendmsg = function (cookie, token, user, id) {
         headers: headers
     }
     var req = http.request(opt, function (res) {
-        console.log('STATUS: ' + res.statusCode);
+        //console.log('STATUS: ' + res.statusCode);
         //   console.log('HEADERS: ' + JSON.stringify(res.headers));
         //   res.setEncoding('utf8');
         //   res.on('data', function (chunk) {
         //      console.log('BODY: ' + chunk);
         //  });
     });
-    req.write(post);
-    req.end();
+    //req.write(post);
+    //req.end();
+    console.log(userid);
 }
 
-var a = function (arr, cookie, token, i, id) {
-
-    if (i >= arr.length || arr.length == 0) {
-        //   callback('ok');
-        //  return;
-        console.log('9999999999999999');
+var a = function (callback) {
+    if (i >= 6) {
+        callback('ok')  ;
     }
     setTimeout(function () {
-        // sendmsg(cookie, token, arr[i], id);
-        console.log('bbbbbbb' + arr[i]);
+        sendmsg(arr[i]);
         i = i + 1;
-        // if (i == arr.length) {
-        //    callback('send ok');
-        //  }
+        a(callback);
     }, 1000);
-
-    a(cookie, token, i, id);
 
 
 }
