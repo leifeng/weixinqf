@@ -4,14 +4,16 @@ var cookie = require('./GetCookie');
 
 exports.fs = function (callback) {
     cookie.cookie(function (cookie, token) {
+        console.log('getcookie');
         sendmsg(cookie, token,function(result){
-            callback(result)
+            callback(result) ;
         });
     });
 }
 
 
 var sendmsg = function (cookie, token,callback) {
+    console.log('sendmsg')
     var post = querystring.stringify({
         type: '10',
         fid: '10000185',
@@ -22,6 +24,7 @@ var sendmsg = function (cookie, token,callback) {
         token: token,
         ajax: '1'
     });
+    console.log('post: ' + post);
     var headers = {
         'Accept': '*/*',
         'Accept-Encoding': 'gzip,deflate,sdch',
