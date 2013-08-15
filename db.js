@@ -16,9 +16,8 @@ exports.find = function (callback) {
     db.collection('token').find().toArray(function (err, result) {
         if (err) return;
         for (var i in result) {
-            //console.log('find: ' + result[i].id);
             all += result[i].id + ',';
-            if (i == result.length) {
+            if (i == result.length-1) {
                 console.log(all);
                 callback(all);
             }
