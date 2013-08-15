@@ -60,10 +60,10 @@ var sendmsg = function (cookie, token, user, id) {
     req.end();
 }
 
-var a = function (arr,cookie, token, i, id,calllback) {
+var a = function (arr,cookie, token, i, id,callback) {
 
     if(i>=arr.length||arr.length==0) {
-        calllback('ok');
+        callback('ok');
     }
     setTimeout(function () {
        // sendmsg(cookie, token, arr[i], id);
@@ -73,7 +73,7 @@ var a = function (arr,cookie, token, i, id,calllback) {
       //  }
     }, 1000)
 
-    a(cookie,token,++i, id);
+    a(cookie,token,++i, id,callback);
 
 
 }
