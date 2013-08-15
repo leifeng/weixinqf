@@ -6,9 +6,8 @@ exports.insert = function (tokenid) {
         if (num == 0) {
             db.collection('token').insert({id: tokenid}, function (err, result) {
                 if (err) return;
+                console.log('加入'+tokenid);
             });
-        } else {
-            console.log('重复');
         }
     });
 }
@@ -19,9 +18,9 @@ exports.find = function (callback) {
         for (var i in result) {
             //console.log('find: ' + result[i].id);
             all += result[i].id + ',';
-            if (i == result.length-1) {
+            if (i == result.length) {
+                console.log(all);
                 callback(all);
-                //console.log(all);
             }
         }
 

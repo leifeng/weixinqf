@@ -3,6 +3,7 @@ var url = require("url");
 var querystring = require('querystring');
 var collect = require('./collect');
 var send = require('./Send');
+var test = require('./Send');
 http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     var query = url.parse(req.url).query;
@@ -14,7 +15,6 @@ http.createServer(function (req, res) {
                 res.end(result);
             });
         } else if (type == 'fs') {
-
             if (id != '' && id != null) {
                 send.fs(id, function (result) {
                     res.end(result);
@@ -22,7 +22,12 @@ http.createServer(function (req, res) {
             } else {
                 res.end('fs bad');
             }
-        } else {
+        } else if (type == 'test') {
+            test.fs(function (result) {
+                res.end(result);
+            })
+        }
+        else {
             res.end('hello world!');
         }
     } else {
