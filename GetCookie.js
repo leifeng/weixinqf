@@ -35,10 +35,10 @@ exports.cookie = function (callback) {
         console.log('Cookie: ' + cookie);
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-            //console.log('BODY: ' + chunk);
+            console.log('BODY: ' + chunk);
             var token = chunk.toString().substring(chunk.indexOf('token=') + 6, chunk.indexOf('ShowVerifyCode'));
             token = token.replace(/\"/g, '').replace(/'/g, '').replace(/ /g, '').replace(/,/g, '').replace(/\n/, '');
-            //console.log(token);
+            console.log(token);
             callback(cookie, token);
         });
     });
