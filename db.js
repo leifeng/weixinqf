@@ -18,7 +18,7 @@ exports.find = function (callback) {
         for (var i in result) {
             all += result[i].id + ',';
             if (i == result.length-1) {
-                console.log(all);
+                //console.log(all);
                 callback(all);
             }
         }

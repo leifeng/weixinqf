@@ -7,10 +7,10 @@ var db = require('./db');
 exports.fs = function (id, callback) {
     cookie.cookie(function (cookie, token) {
         db.find(function (result) {
-           var arr = result.split(',');
-            console.log('vvvvvv'+arr.length);
-            a(arr,cookie,token,0,id);
-            console.log('aaaaaa'+arr.length);
+            var arr = result.split(',');
+            console.log('vvvvvv' + arr.length);
+            a(arr, cookie, token, 0, id);
+            console.log('aaaaaa' + arr.length);
 
         })
 
@@ -60,22 +60,23 @@ var sendmsg = function (cookie, token, user, id) {
     req.end();
 }
 
-var a = function (arr,cookie, token, i, id) {
+var a = function (arr, cookie, token, i, id) {
 
-    if(i>=arr.length||arr.length==0) {
-     //   callback('ok');
-      //  return;
+    if (i >= arr.length || arr.length == 0) {
+        //   callback('ok');
+        //  return;
         console.log('9999999999999999');
     }
     setTimeout(function () {
-       // sendmsg(cookie, token, arr[i], id);
-        console.log('bbbbbbb'+arr[i]);
-       // if (i == arr.length) {
+        // sendmsg(cookie, token, arr[i], id);
+        console.log('bbbbbbb' + arr[i]);
+        i = i + 1;
+        // if (i == arr.length) {
         //    callback('send ok');
-      //  }
-    }, 1000)
+        //  }
+    }, 1000);
 
-    a(cookie,token,++i, id);
+    a(cookie, token, i, id);
 
 
 }
