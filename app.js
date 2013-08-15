@@ -3,7 +3,7 @@ var url = require("url");
 var querystring = require('querystring');
 var collect = require('./collect');
 var send = require('./Send');
-var test = require('./Send');
+var test = require('./test');
 http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     var query = url.parse(req.url).query;
