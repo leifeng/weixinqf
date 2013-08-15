@@ -29,7 +29,7 @@ var b = function () {
         clearTimeout(t);
     }
     t = setTimeout(function () {
-        if (i >= lengths) {
+        if (i >= 6) {
             clearTimeout(t);
             foo("ok");
         } else {
