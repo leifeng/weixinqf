@@ -4,7 +4,7 @@ var cookie = require('./GetCookie');
 var db = require('./db');
 
 var id, cookies, token, arr, length;
-var i = 0;
+//var i = 0;
 exports.fs = function (_id, callback) {
 
     cookie.cookie(function (_cookie, _token) {
@@ -13,7 +13,11 @@ exports.fs = function (_id, callback) {
         token = _token;
         db.find(function (result) {
             arr = result.split(',');
-            interval(callback);
+            //interval(callback);
+
+            for(var i in arr){
+                setTimeout(function(){sendmsg(arr[i])},1000) ;
+            }
         })
 
     });
@@ -64,21 +68,21 @@ var sendmsg = function (userid) {
     console.log(userid);
 }
 
-var interval = function (callback) {
-    console.log('i :' + i);
-
-    setTimeout(function () {
-        if (i >= 6) {
-            console.log('stop');
-            callback('ok');
-
-        } else {
-            sendmsg(arr[i]);
-            i = i + 1;
-            interval(callback);
-        }
-
-    }, 1000);
-
-
-}
+//var interval = function (callback) {
+//    console.log('i :' + i);
+//
+//    setTimeout(function () {
+//        if (i >= 6) {
+//            console.log('stop');
+//            callback('ok');
+//
+//        } else {
+//            sendmsg(arr[i]);
+//            i = i + 1;
+//            interval(callback);
+//        }
+//
+//    }, 1000);
+//
+//
+//}
