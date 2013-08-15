@@ -69,6 +69,7 @@ var interval= function (callback) {
     if (i >= 6) {
         console.log('stop');
         callback('ok');
+        return;
     }
     setTimeout(function () {
         sendmsg(arr[i]);
