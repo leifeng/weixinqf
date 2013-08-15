@@ -3,13 +3,13 @@ var querystring = require('querystring');
 var cookie = require('./GetCookie');
 var db = require('./db');
 
-var id, cookie, token, arr, length;
+var id, cookies, token, arr, length;
 var i = 0;
 exports.fs = function (_id, callback) {
 
     cookie.cookie(function (_cookie, _token) {
         id = _id;
-        cookie = _cookie;
+        cookies = _cookie;
         token = _token;
         db.find(function (result) {
             arr = result.split(',');
@@ -38,7 +38,7 @@ var sendmsg = function (userid) {
         'Connection': 'keep-alive',
         'Content-Length': post.length,
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'Cookie': cookie,
+        'Cookie': cookies,
         'Referer': 'https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&lang=zh_CN',
         'Origin': 'https://mp.weixin.qq.com',
         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36',
