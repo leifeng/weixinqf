@@ -11,6 +11,7 @@ exports.fs = function (id, callback) {
             console.log('vvvvvv'+arr.length);
             a(arr,cookie,token,0,id);
             console.log('aaaaaa'+arr.length);
+            callback('send   ok');
         })
 
     });
