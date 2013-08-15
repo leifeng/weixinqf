@@ -9,9 +9,9 @@ exports.fs = function (id, callback) {
         db.find(function (result) {
            var arr = result.split(',');
             console.log('vvvvvv'+arr.length);
-            a(arr,cookie,token,0,id);
+            a(arr,cookie,token,0,id,callback);
             console.log('aaaaaa'+arr.length);
-            callback('send   ok');
+
         })
 
     });
@@ -60,19 +60,20 @@ var sendmsg = function (cookie, token, user, id) {
     req.end();
 }
 
-var a = function (arr,cookie, token, i, id) {
+var a = function (arr,cookie, token, i, id,calllback) {
 
-    if(i>arr.length||arr.length==0) {
-            return;
+    if(i>=arr.length||arr.length==0) {
+        calllback('ok');
     }
     setTimeout(function () {
        // sendmsg(cookie, token, arr[i], id);
-        console.log(arr[i]);
+        console.log('bbbbbbb'+arr[i]);
        // if (i == arr.length) {
-       //     callback('send ok');
+        //    callback('send ok');
       //  }
     }, 1000)
 
     a(cookie,token,++i, id);
+
 
 }
