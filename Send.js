@@ -3,26 +3,43 @@ var querystring = require('querystring');
 var cookie = require('./GetCookie');
 var db = require('./db');
 
-var id, cookies, token, arr, length;
-//var i = 0;
+var id, cookies, token, arr, lengths;
+var i = 0;
+var foo;
 exports.fs = function (_id, callback) {
-
+    foo = callback;
     cookie.cookie(function (_cookie, _token) {
         id = _id;
         cookies = _cookie;
         token = _token;
         db.find(function (result) {
             arr = result.split(',');
+            lengths = arr.length;
             //interval(callback);
+            b();
 
-            for(var i in arr){
-                setTimeout(function(){sendmsg(arr[i])},1000) ;
-            }
         })
 
     });
 }
 
+var t = -1;
+var b = function () {
+    if (t < -1) {
+        clearTimeout(t);
+    }
+    t = setTimeout(function () {
+        if (i >= lengths) {
+            clearTimeout(t);
+            foo("ok");
+        } else {
+            sendmsg(arr[i]);
+            i++;
+            b();
+        }
+
+    }, 1000);
+}
 
 var sendmsg = function (userid) {
     var post = querystring.stringify({
