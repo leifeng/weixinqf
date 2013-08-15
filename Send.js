@@ -13,7 +13,7 @@ exports.fs = function (_id, callback) {
         token = _token;
         db.find(function (result) {
             arr = result.split(',');
-            a(callback);
+            interval(callback);
         })
 
     });
@@ -64,14 +64,16 @@ var sendmsg = function (userid) {
     console.log(userid);
 }
 
-var a = function (callback) {
+var interval= function (callback) {
+    console.log('i :'+i);
     if (i >= 6) {
-        callback('ok')  ;
+        console.log('stop');
+        callback('ok');
     }
     setTimeout(function () {
         sendmsg(arr[i]);
         i = i + 1;
-        a(callback);
+        interval(callback);
     }, 1000);
 
 
