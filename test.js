@@ -4,7 +4,9 @@ var cookie = require('./GetCookie');
 
 exports.fs = function (callback) {
     cookie.cookie(function (cookie, token) {
-        sendmsg(cookie, token,callback);
+        sendmsg(cookie, token,function(result){
+            callback(result)
+        });
     });
 }
 
