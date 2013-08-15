@@ -8,6 +8,7 @@ exports.fs = function (callback) {
         sendmsg(cookie, token,function(result){
             callback(result) ;
         });
+        setTimeout()
     });
 }
 

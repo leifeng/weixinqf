@@ -3,18 +3,12 @@ var querystring = require('querystring');
 var cookie = require('./GetCookie');
 var db = require('./db');
 
+
 exports.fs = function (id, callback) {
     cookie.cookie(function (cookie, token) {
         db.find(function (result) {
-            var arr = result.split(',');
-            console.log('---' + arr);
-            for (var i in arr) {
-                sendmsg(cookie, token, arr[i], id);
-                if(i==arr.length){
-                    callback('send ok');
-                }
-            }
-
+           var arr = result.split(',');
+            a(arr,cookie,token,0,id);
         })
 
     });
@@ -61,4 +55,21 @@ var sendmsg = function (cookie, token, user, id) {
     });
     req.write(post);
     req.end();
+}
+
+var a = function (arr,cookie, token, i, id) {
+
+    if(i>arr.length||arr.length==0) {
+            return;
+    }
+    setTimeout(function () {
+       // sendmsg(cookie, token, arr[i], id);
+        console.log(arr[i]);
+        if (i == arr.length) {
+            callback('send ok');
+        }
+    }, 1000)
+
+    a(cookie,token,++i, id);
+
 }
