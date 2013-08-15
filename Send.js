@@ -9,7 +9,7 @@ exports.fs = function (id, callback) {
         db.find(function (result) {
            var arr = result.split(',');
             console.log('vvvvvv'+arr.length);
-            a(arr,cookie,token,0,id,callback);
+            a(arr,cookie,token,0,id);
             console.log('aaaaaa'+arr.length);
 
         })
@@ -60,10 +60,12 @@ var sendmsg = function (cookie, token, user, id) {
     req.end();
 }
 
-var a = function (arr,cookie, token, i, id,callback) {
+var a = function (arr,cookie, token, i, id) {
 
     if(i>=arr.length||arr.length==0) {
-        callback('ok');
+     //   callback('ok');
+      //  return;
+        console.log('9999999999999999');
     }
     setTimeout(function () {
        // sendmsg(cookie, token, arr[i], id);
@@ -73,7 +75,7 @@ var a = function (arr,cookie, token, i, id,callback) {
       //  }
     }, 1000)
 
-    a(cookie,token,++i, id,callback);
+    a(cookie,token,++i, id);
 
 
 }
