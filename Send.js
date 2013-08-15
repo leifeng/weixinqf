@@ -64,17 +64,20 @@ var sendmsg = function (userid) {
     console.log(userid);
 }
 
-var interval= function (callback) {
-    console.log('i :'+i);
-    if (i >= 6) {
-        console.log('stop');
-        callback('ok');
-        return;
-    }
+var interval = function (callback) {
+    console.log('i :' + i);
+
     setTimeout(function () {
-        sendmsg(arr[i]);
-        i = i + 1;
-        interval(callback);
+        if (i >= 6) {
+            console.log('stop');
+            callback('ok');
+
+        } else {
+            sendmsg(arr[i]);
+            i = i + 1;
+            interval(callback);
+        }
+
     }, 1000);
 
 
