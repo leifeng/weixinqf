@@ -16,7 +16,7 @@ exports.fs = function (_id, callbacks) {
           // var arr = result.split(',');
           //lengths = arr.length;
             //interval(callback);
-           var arr=['1309417340','1309417340','1309417340','1309417340','1309417340','1309417340']  ;
+           var arr=['1309417340','370824115','1309417340','370824115','1309417340','370824115','1309417340','370824115']  ;
             async.forEachSeries(arr, function(item, callback) {
                 console.log('id: ' + item);
                 setTimeout(function(){
