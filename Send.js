@@ -13,28 +13,21 @@ exports.fs = function (_id, callbacks) {
         cookies = _cookie;
         token = _token;
         db.find(function (result) {
-           var arr = result.split(',');
+          // var arr = result.split(',');
           //lengths = arr.length;
             //interval(callback);
-            var arr=['0','1','2','3','4','5']  ;
+           var arr=['1309417340']  ;
             async.forEachSeries(arr, function(item, callback) {
-                console.log('1.3 enter: ' + item);
+                console.log('id: ' + item);
                 setTimeout(function(){
-//                    sendmsg(item,function(data){
-//                        console.log(data);
-//                        if(data.indexOf('ok')!=-1){
-//                            callback('err');
-//                        }
-//
-//                    }) ;
-                    console.log('sending:  '+item);
-                    if(item=="4"){
-                        callback('err');
-                    }
+                    sendmsg(item,function(data){
+                        console.log(data);
+                        callback(null, item);
+                    }) ;
                 }, 2000);
             }, function(err) {
-                console.log('1.3 err: ' + err);
-                callbacks(err) ;
+                console.log('完成' + err);
+                callbacks('完成') ;
             });
 
         }) ;
