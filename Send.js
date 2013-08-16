@@ -16,27 +16,19 @@ exports.fs = function (_id, callbacks) {
            //var arr = result.split(',');
           //lengths = arr.length;
             //interval(callback);
-//            async.forEachSeries(arr, function(item, callback) {
-//                console.log('1.3 enter: ' + item);
-//                setTimeout(function(){
-//                    sendmsg(item)   ;
-//                    callback(null, item);
-//                }, 1000);
-//            }, function(err) {
-//                console.log('1.3 err: ' + err);
-//                callbacks('err') ;
-//            });
-            var arr=['0','1','2','3','4','5']
-            async.forEach(arr, function(item, callback) {
-                console.log('1.1 enter: ' + item);
+            var arr=['0','1','2','3','4','5']  ;
+            async.forEachSeries(arr, function(item, callback) {
+                console.log('1.3 enter: ' + item);
                 setTimeout(function(){
-                    sendmsg(item);
+                    sendmsg(item)   ;
                     callback(null, item);
-                }, 2000);
+                }, 1000);
             }, function(err) {
-                console.log('1.1 err: ' + err);
+                console.log('1.3 err: ' + err);
                 callbacks('err') ;
             });
+
+
 
         })
 
