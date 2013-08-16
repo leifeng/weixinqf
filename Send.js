@@ -20,41 +20,23 @@ exports.fs = function (_id, callbacks) {
             async.forEachSeries(arr, function(item, callback) {
                 console.log('1.3 enter: ' + item);
                 setTimeout(function(){
-                    sendmsg(item)   ;
-                    callback(null, item);
-                }, 1000);
+                    sendmsg(item,function(data){
+                        console.log(data);
+                        callback(null, item);
+                    }) ;
+                }, 3000);
             }, function(err) {
                 console.log('1.3 err: ' + err);
                 callbacks('err') ;
             });
 
-
-
-        })
+        }) ;
 
     });
 }
 
-//var t = -1;
-//var b = function () {
-//    if (t > -1) {
-//        clearTimeout(t);
-//    }
-//    t = setTimeout(function () {
-//        if (i == 6) {
-//            clearTimeout(t);
-//            foo("ok");
-//            return;
-//        } else {
-//            sendmsg(arr[i]);
-//            i++;
-//            b();
-//        }
-//
-//    }, 1000);
-//}
 
-var sendmsg = function (userid) {
+var sendmsg = function (userid,callback) {
     var post = querystring.stringify({
         type: '10',
         fid: id,
@@ -95,25 +77,7 @@ var sendmsg = function (userid) {
     });
     //req.write(post);
     //req.end();
-    console.log(userid);
-
+    //console.log(userid);
+         callback(userid);
 }
 
-//var interval = function (callback) {
-//    console.log('i :' + i);
-//
-//    setTimeout(function () {
-//        if (i >= 6) {
-//            console.log('stop');
-//            callback('ok');
-//
-//        } else {
-//            sendmsg(arr[i]);
-//            i = i + 1;
-//            interval(callback);
-//        }
-//
-//    }, 1000);
-//
-//
-//}
