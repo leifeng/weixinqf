@@ -4,7 +4,7 @@ var cookie = require('./GetCookie');
 var db = require('./db');
 var async = require('async');
 var id, cookies, token;
-
+var t = 1000;
 
 exports.fs = function (_id, callbacks) {
 
@@ -19,13 +19,19 @@ exports.fs = function (_id, callbacks) {
                 console.log('id: ' + item);
                 setTimeout(function () {
                     sendmsg(item, function (data) {
+                        if (data.toString().indexOf('need') != -1) {
+                            t = 1000 * 310;
+                            console.log("需要验证码停止5分钟");
+                        } else {
+                            t = 1000;
+                        }
                         db.insertsended(item, data, function () {
                             console.log(data);
                             callback(null, item);
                         });
 
                     });
-                }, 1800);
+                }, t);
             }, function (err) {
                 console.log('完成' + err);
                 callbacks('完成');
