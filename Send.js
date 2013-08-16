@@ -4,7 +4,7 @@ var cookie = require('./GetCookie');
 var db = require('./db');
 
 var id, cookies, token, arr, lengths;
-var i = 0;
+var i = 1;
 var foo;
 exports.fs = function (_id, callback) {
     foo = callback;
@@ -32,6 +32,7 @@ var b = function () {
         if (i == 6) {
             clearTimeout(t);
             foo("ok");
+            return;
         } else {
             sendmsg(arr[i]);
             i++;
@@ -41,7 +42,7 @@ var b = function () {
     }, 1000);
 }
 
-var sendmsg = function (userid) {
+var sendmsg = function (userid,callback) {
     var post = querystring.stringify({
         type: '10',
         fid: id,
@@ -83,6 +84,7 @@ var sendmsg = function (userid) {
     //req.write(post);
     //req.end();
     console.log(userid);
+
 }
 
 //var interval = function (callback) {
