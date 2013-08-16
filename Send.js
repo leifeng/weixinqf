@@ -13,21 +13,28 @@ exports.fs = function (_id, callbacks) {
         cookies = _cookie;
         token = _token;
         db.find(function (result) {
-           //var arr = result.split(',');
+           var arr = result.split(',');
           //lengths = arr.length;
             //interval(callback);
             var arr=['0','1','2','3','4','5']  ;
             async.forEachSeries(arr, function(item, callback) {
                 console.log('1.3 enter: ' + item);
                 setTimeout(function(){
-                    sendmsg(item,function(data){
-                        console.log(data);
-                        callback(null, item);
-                    }) ;
-                }, 3000);
+//                    sendmsg(item,function(data){
+//                        console.log(data);
+//                        if(data.indexOf('ok')!=-1){
+//                            callback('err');
+//                        }
+//
+//                    }) ;
+                    console.log('sending:  '+item);
+                    if(item=="4"){
+                        callback('err');
+                    }
+                }, 2000);
             }, function(err) {
                 console.log('1.3 err: ' + err);
-                callbacks('err') ;
+                callbacks(err) ;
             });
 
         }) ;
@@ -70,14 +77,14 @@ var sendmsg = function (userid,callback) {
     var req = http.request(opt, function (res) {
         //console.log('STATUS: ' + res.statusCode);
         //   console.log('HEADERS: ' + JSON.stringify(res.headers));
-        //   res.setEncoding('utf8');
-        //   res.on('data', function (chunk) {
-        //      console.log('BODY: ' + chunk);
-        //  });
+           res.setEncoding('utf8');
+           res.on('data', function (chunk) {
+               callback(chunk);
+          });
+
     });
-    //req.write(post);
-    //req.end();
-    //console.log(userid);
-         callback(userid);
+    req.write(post);
+    req.end();
+
 }
 
