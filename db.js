@@ -6,7 +6,7 @@ exports.insert = function (tokenid) {
         if (num == 0) {
             db.collection('token').insert({id: tokenid}, function (err, result) {
                 if (err) return;
-                console.log('加入'+tokenid);
+                console.log('加入' + tokenid);
             });
         }
     });
@@ -17,10 +17,18 @@ exports.find = function (callback) {
         if (err) return;
         for (var i in result) {
             all += result[i].id + ',';
-            if (i == result.length-1) {
+            if (i == result.length - 1) {
                 callback(all);
             }
         }
 
     });
+}
+exports.insertsended = function (tokenid, status, callback) {
+
+    db.collection('sended').insert({id: tokenid, status: status}, function (err, result) {
+        if (err) return;
+        callback()
+    });
+
 }

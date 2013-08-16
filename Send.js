@@ -2,7 +2,7 @@ var http = require('http');
 var querystring = require('querystring');
 var cookie = require('./GetCookie');
 var db = require('./db');
-var async=require('async');
+var async = require('async');
 var id, cookies, token;
 
 
@@ -13,30 +13,31 @@ exports.fs = function (_id, callbacks) {
         cookies = _cookie;
         token = _token;
         db.find(function (result) {
-          // var arr = result.split(',');
-          //lengths = arr.length;
-            //interval(callback);
-           var arr=['1309417340','370824115','1309417340','370824115','1309417340','370824115','1309417340','370824115']  ;
-            async.forEachSeries(arr, function(item, callback) {
+            var arr = result.split(',');
+            //  var arr=['1309417340','370824115','1309417340','370824115','1309417340','370824115','1309417340','370824115']  ;
+            async.forEachSeries(arr, function (item, callback) {
                 console.log('id: ' + item);
-                setTimeout(function(){
-                    sendmsg(item,function(data){
-                        console.log(data);
-                        callback(null, item);
-                    }) ;
-                }, 2000);
-            }, function(err) {
+                setTimeout(function () {
+                    sendmsg(item, function (data) {
+                        db.insertsended(item, data, function () {
+                            console.log(data);
+                            callback(null, item);
+                        });
+
+                    });
+                }, 1800);
+            }, function (err) {
                 console.log('完成' + err);
-                callbacks('完成') ;
+                callbacks('完成');
             });
 
-        }) ;
+        });
 
     });
 }
 
 
-var sendmsg = function (userid,callback) {
+var sendmsg = function (userid, callback) {
     var post = querystring.stringify({
         type: '10',
         fid: id,
@@ -70,10 +71,10 @@ var sendmsg = function (userid,callback) {
     var req = http.request(opt, function (res) {
         //console.log('STATUS: ' + res.statusCode);
         //   console.log('HEADERS: ' + JSON.stringify(res.headers));
-           res.setEncoding('utf8');
-           res.on('data', function (chunk) {
-               callback(chunk);
-          });
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            callback(chunk);
+        });
 
     });
     req.write(post);
