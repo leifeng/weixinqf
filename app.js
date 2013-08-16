@@ -5,10 +5,7 @@ var collect = require('./collect');
 var send = require('./Send');
 var test = require('./test');
 http.createServer(function (req, res) {
-    if(!res.socket || res.socket.destroyed){
-        console.log('client socket closed,oop!');
-        return res.end();
-    }
+
     res.writeHead(200, {'Content-Type': 'text/plain'});
     var query = url.parse(req.url).query;
     var type = querystring.parse(query).type;
@@ -29,7 +26,7 @@ http.createServer(function (req, res) {
         } else if (type == 'test') {
             test.fs(function (result) {
                 res.end(result);
-            })
+            });
         }
         else {
             res.end('hello world!');
