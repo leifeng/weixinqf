@@ -14,7 +14,7 @@ http.createServer(function (req, res) {
             res.end("采集完成");
         });
     } else if (type == "fs" && id != null) {
-        lib.send(function () {
+        lib.send(id,function () {
             res.end("发送处理中..");
         });
     } else {
