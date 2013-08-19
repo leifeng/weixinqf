@@ -17,7 +17,7 @@ http.createServer(function (req, res) {
         lib.send(id, function () {
             res.end("发送处理中..");
         });
-    } else if (type == "err" & id != null) {
+    } else if (type == "err" && id != null) {
         lib.senderr(id, function () {
             res.end("发送处理中..");
         });
