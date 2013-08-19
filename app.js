@@ -14,10 +14,15 @@ http.createServer(function (req, res) {
             res.end("采集完成");
         });
     } else if (type == "fs" && id != null) {
-        lib.send(id,function () {
+        lib.send(id, function () {
             res.end("发送处理中..");
         });
-    } else {
+    } else if (type == "err" & id != null) {
+        lib.senderr(id, function () {
+            res.end("发送处理中..");
+        });
+    }
+    else {
         res.end('hello world!');
     }
 
